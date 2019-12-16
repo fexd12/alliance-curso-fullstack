@@ -2,7 +2,7 @@
 
 by Diego Yegros - Alliance
 
-## Sumário
+## Sumário   
 
 - [Curso de desenvolvimento Web Fullstack NodeJS + Vue.js](#curso-de-desenvolvimento-web-fullstack-nodejs--vuejs)
   - [Sumário](#sum%c3%a1rio)
