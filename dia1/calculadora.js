@@ -4,7 +4,7 @@ import path from 'path';
 const router = Router();
 
 router.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname,'index.html'));
+    res.sendFile(path.join(__dirname, 'index.html'));
 });
 
 router.post('/', (req, res) => {
@@ -14,14 +14,12 @@ router.post('/', (req, res) => {
 
     let resultado;
 
-    if (operador == '+') resultado = operando1 + operando2;
+    if (operador == '+') resultado = Number(operando1) + Number(operando2);
     else if (operador == '-') resultado = operando1 - operando2;
     else if (operador == '*') resultado = operando1 * operando2;
     else if (operador == '/') resultado = operando1 / operando2;
 
     res.status = 200;
-    //res.send(JSON.stringify({ resultado }));
-    res.send(resultado);
-
+    res.send(JSON.stringify({ resultado }));
 });
 export default router;
