@@ -55,13 +55,13 @@
 import axios from "axios";
 export default {
   name: "Calculadora",
-  data() {
+  data() {      
     return {
-      operando1: "",
+      operando1: "",  
       operando2: "",   
-      operador: "+",
+      operador: "+", 
       ultimoResultado: "",
-      historicos: [
+      historicos: [   
         {
           operando1: "",
           operando2: "",
