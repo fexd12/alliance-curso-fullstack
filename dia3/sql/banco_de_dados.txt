@@ -1,0 +1,4 @@
+porta : 5432
+senha: 
+usuario: dia3
+database : db_dia3
