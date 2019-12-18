@@ -1,23 +1,19 @@
-
-import { Router } from 'express';
 import {criaClient} from './banco'
+import { Router } from 'express';
 
 const router = Router();
 
+
 router.get('/', async (req, res) => {
     let resultado = [];
-
+    
     const client = criaClient();
     await client.connect();
-    let queryResult = await client.query('select CODIGO, NOME, TELEFONE, EMAIL, SALDO_CREDITOS from USUARIOS');
+    let queryResult = await client.query('select CODIGO, ATIVO from BICICLETAS');
     for (let row of queryResult.rows) {
         resultado.push({
-            codigo: row.codigo,
-            nome: row.nome.trim(),
-            telefone: row.telefone.trim(),
-            email: row.email.trim(),
-            saldoCreditos: row.saldo_creditos
-
+            codigo: row.codigo.trim(),
+            ativo: row.ativo.trim()
         });
 
     }
@@ -29,8 +25,8 @@ router.post('/', async (req, res) => {
     const client = criaClient();
     await client.connect();
     let payload = req.body;
-    let sql = `insert into USUARIOS (CODIGO, NOME, TELEFONE, EMAIL, SALDO_CREDITOS) VALUES 
-    (nextval('usuarios_sequence'),'${payload.nome}','${payload.telefone}','${payload.email}', ${payload.saldoCreditos})`;
+    let sql = `insert into BICICLETAS (CODIGO, ATIVO) VALUES 
+    ('${payload.codigo}','${payload.ativo}')`;
     
     await client.query(sql);
     res.send("Dados inseridos");
@@ -45,13 +41,10 @@ router.put('/:codigo', async (req, res) => {
     const client = criaClient();
     await client.connect();
 
-    let sql = `update USUARIOS set
-    NOME ='${payload.nome}',
-    TELEFONE= '${payload.telefone}',
-    EMAIL= '${payload.email}',
-    SALDO_CREDITOS =  ${payload.saldoCreditos}
+    let sql = `update BICICLETAS set
+    ATIVO ='${payload.ativo}'    
      where
-    codigo = ${codigo}
+    codigo = '${codigo}'
     `;
 
     await client.query(sql);
@@ -66,9 +59,9 @@ router.delete('/:codigo', async (req, res) => {
     const client = criaClient();
     await client.connect();
 
-    let sql = `delete from USUARIOS 
+    let sql = `delete from BICICLETAS 
      where
-    codigo = ${codigo}
+    codigo = '${codigo}'
     `;
 
     await client.query(sql);
@@ -76,6 +69,5 @@ router.delete('/:codigo', async (req, res) => {
     res.status(204);
     res.send();
 });
-
 
 export default router;

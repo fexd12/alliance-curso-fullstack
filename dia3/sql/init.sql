@@ -65,3 +65,7 @@ CREATE TABLE public.VIAGENS
 
 ALTER TABLE public.VIAGENS
     OWNER to dia3;
+
+CREATE SEQUENCE public.usuarios_sequence
+  start 1
+  increment 1;
