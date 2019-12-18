@@ -58,7 +58,7 @@ export default {
   data() {
     return {
       operando1: "",
-      operando2: "",
+      operando2: "",   
       operador: "+",
       ultimoResultado: "",
       historicos: [
