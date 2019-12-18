@@ -33,5 +33,4 @@ router.get('/usuarios/:codigo/', async (req, res) => {
 
 
 
-
 export default router
