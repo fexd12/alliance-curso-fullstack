@@ -4,7 +4,7 @@ import {criaClient} from './banco'
 
 const router = Router();
 
-router.get(':codigo/', async (req, res) => {
+router.get('/usuarios/:codigo/', async (req, res) => {
     let resultado = [];
     
     const CODIGO_USUARIO = req.params.codigo;
