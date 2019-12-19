@@ -34,8 +34,7 @@ router.post('/', async (req, res) => {
     await client.query(sql);
     res.send("Dados inseridos");
     await client.end()
-    res.status(201);
-    res.send();
+    
 });
 
 router.put('/:codigo', async (req, res) => {

@@ -4,6 +4,7 @@ import {criaClient} from './banco'
 const router = Router();
 
 router.post('/:codigo/', async (req, res) => {
+    
     const client = criaClient();
     await client.connect();
     const CODIGO_USer = req.params.codigo;
