@@ -69,3 +69,7 @@ ALTER TABLE public.VIAGENS
 CREATE SEQUENCE public.usuarios_sequence
   start 1
   increment 1;
+
+CREATE SEQUENCE public.viagens_sequence
+  start 1
+  increment 1;

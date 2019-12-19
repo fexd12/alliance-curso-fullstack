@@ -1,8 +1,10 @@
 
 import { Router } from 'express';
-import {criaClient} from './banco'
+import {criaClient} from './banco';
 
 const router = Router();
+
+
 
 router.get('/', async (req, res) => {
     let resultado = [];
@@ -40,7 +42,7 @@ router.post('/', async (req, res) => {
 });
 
 router.put('/:codigo', async (req, res) => {
-    let codigo = req.params.codigo;
+
     let payload = req.body;
     const client = criaClient();
     await client.connect();
