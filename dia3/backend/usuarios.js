@@ -1,10 +1,7 @@
-
 import { Router } from 'express';
 import {criaClient} from './banco';
 
 const router = Router();
-
-
 
 router.get('/', async (req, res) => {
     let resultado = [];
