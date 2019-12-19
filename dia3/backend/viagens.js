@@ -24,7 +24,7 @@ router.get('/:codigo/', async (req, res) => {
             preco: row.preco
             
         });
-    //console.log(queryResult.rows);
+    console.log(queryResult.rows);
     }
     await client.end();
     res.send(JSON.stringify(resultado));

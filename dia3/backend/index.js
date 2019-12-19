@@ -14,14 +14,18 @@ app.use('/bicicletas', bicicletas);
 app.use('/viagens/', viagens);
 app.use('/viagens2/',viagens2);
 
-app.route('/usuarios/:codigo/')
+app.route('/usuarios/:codigo')
     .get(function (req,res){
         res.redirect('/viagens/'+ req.params.codigo);
+       // app.use('/viagens/'+ req.params.codigo,viagens)
     })
     .post(function(req,res){
         res.redirect('/viagens/'+ req.params.codigo);
+       // app.use('/viagens/'+ req.params.codigo,viagens);
 
     })
+
+
 
 
 app.listen(3000, () =>
