@@ -39,11 +39,13 @@
         >
         <FormBicicleta v-model="bicicletaAtual"/>
     </b-modal>
-    <b-modal v-model="bicicletaAtual"
+    <b-modal id="excluirBicicleta"
+    title="excluirBicicleta"
         ok-title="Sim"
         cancel-title="Cancelar"
-        @ok="ApagarBicicleta"
-        ><span>Quer Apagar Bicicleta</span>
+        @ok="excluirBicicleta"
+        >
+      <FormBicicleta v-model="bicicletaAtual"/>
     </b-modal>
   </div>
 </template>
@@ -85,8 +87,24 @@ export default {
     },
     methods: {
        async excluirBicicleta(codigo) {
-            return codigo;
-        },BeforeEditaBicicleta(bicicleta){
+         let payload={
+           codigo:this.bicicletaAtual.codigo
+         };
+            try{
+            await axios.delete(`http://localhost:3000/bicicletas/${this.bicicletaAtual.codigo}`,payload);
+            await this.carregaBicicletas();
+          }
+          catch(err){
+            alert("erro ao inserir a bicicleta");
+          }
+        },BeforeExcluirBicicleta(bicicleta){
+          this.bicicletaAtual={
+             codigo: bicicleta.codigo,
+              ativo: bicicleta.ativo,
+              isNew: bicicleta.isNew
+          }
+        },
+        BeforeEditaBicicleta(bicicleta){
             this.bicicletaAtual = {
               codigo: bicicleta.codigo,
               ativo: bicicleta.ativo,
@@ -108,6 +126,7 @@ export default {
           }
            
         },
+        
         async carregaBicicletas(){
           this.bicicletas.splice(0,this.bicicletas.length);
           let dados = await axios.get('http://localhost:3000/bicicletas/');
