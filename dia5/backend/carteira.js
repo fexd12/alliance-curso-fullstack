@@ -50,7 +50,7 @@ router.put('/:codigo', async (req, res) => {
     if (payload.tipo == 'V') {
         let sql0 = `SELECT PRECO_MEDIO from CARTEIRA where CODIGO_ATIVO = '${payload.codigo_ativo}'
     `;console.log(sql0);
-        let preco_medio = await cliente.query(sql0)
+        let preco_medio = await cliente.query(sql0).rows[0].preco_medio
         
         let sql1 = `insert into OPERACOES (ID, CODIGO_ATIVO,QUANTIDADE, PRECO,TIPO,LUCRO_PREJUIZO) VALUES 
         (nextval('SEQ_OPERACOES_ID'),'${payload.codigo_ativo}',${payload.quantidade},${payload.preco_medio},'V',${(payload.preco_medio - preco_medio) * payload.quantidade})
@@ -59,7 +59,7 @@ router.put('/:codigo', async (req, res) => {
         console.log(sql1);
         let sql3 = `select QUANTIDADE from CARTEIRA where CODIGO_ATIVO = '${payload.codigo_ativo}'
     `;
-        let carteira_quantidade = await cliente.query(sql3);
+        let carteira_quantidade = await cliente.query(sql3).row[0].quantidade;
         console.log(carteira_quantidade);
         let sql2 = `update CARTEIRA set
     QUANTIDADE = ${carteira_quantidade - payload.quantidade}
@@ -82,11 +82,11 @@ router.put('/:codigo', async (req, res) => {
         console.log(sql1);
         let sql2 = `select QUANTIDADE from CARTEIRA where CODIGO_ATIVO = '${payload.codigo_ativo}'
     `;
-        let carteira_quantidade = await client.query(sql2);
+        let carteira_quantidade = await client.query(sql2).rows[0].quantidade;
         console.log(carteira_quantidade);
         let sql3 = `select PRECO_MEDIO from CARTEIRA where CODIGO_ATIVO = '${payload.codigo_ativo}'
     `;
-        let carteira_precoMedio = await client.query(sql3);
+        let carteira_precoMedio = await client.query(sql3).rows[0].preco_medio;
         console.log(carteira_precoMedio);
         let sql4 = `update CARTEIRA set
     QUANTIDADE = ${Number(carteira_quantidade) + Number(payload.quantidade)},

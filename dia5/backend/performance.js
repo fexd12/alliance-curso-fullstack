@@ -9,7 +9,7 @@ router.get('/',async(req,res) =>{
     const client =criaClient();
     await client.connect();
 
-    let queryResult = await client.query("select ID, CODIGO_ATIVO, TIPO, DATA, PRECO, QUANTIDADE, LUCRO_PREJUIZO from OPERACOES where TIPO = 'C'");
+    let queryResult = await client.query("select ID, CODIGO_ATIVO, TIPO, DATA, PRECO, QUANTIDADE, LUCRO_PREJUIZO from OPERACOES where TIPO = 'V'");
     for (let row of queryResult.rows) {
         resultado.push({
             id: row.id,
