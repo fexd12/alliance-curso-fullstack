@@ -19,15 +19,21 @@ const routes = [
     component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
   },
   {
-    path: '/bicicletas',
-    name: 'bicicletas',
-    component: () => import(/* webpackChunkName: "bicicletas" */ '../views/Bicicletas.vue')
+    path: '/ativos',
+    name: 'ativo',
+    component: () => import(/* webpackChunkName: "bicicletas" */ '../views/Ativos.vue')
   },
   {
-    path: '/usuarios',
-    name: 'usuarios',
-    component: () => import(/* webpackChunkName: "bicicletas" */ '../views/Usuarios.vue')
-  }
+    path: '/carteira',
+    name: 'carteira',
+    component: () => import(/* webpackChunkName: "bicicletas" */ '../views/Carteira.vue')
+  },
+  {
+    path: '/performance',
+    name: 'performance',
+    component: () => import(/* webpackChunkName: "bicicletas" */ '../views/Performance.vue')
+  },
+
 
 ]
 

@@ -4,7 +4,7 @@ function criaClient() {
     return new Client({
         user: 'dia3',
         host: 'localhost',
-        database: 'db_dia3',
+        database: 'db_dia5',
         password: '12',
         port: 5432
 
