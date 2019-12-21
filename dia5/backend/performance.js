@@ -18,10 +18,11 @@ router.get('/',async(req,res) =>{
             data: row.data,
             preco: row.preco,
             quantidade: row.quantidade,
-            lucro_prejuizo: row.lucro_prejuizo
+            lucro_prejuizo: parseInt(row.lucro_prejuizo)
         });
     }
     await client.end();
     res.send(JSON.stringify(resultado));
-})
+});
+
 export default router;

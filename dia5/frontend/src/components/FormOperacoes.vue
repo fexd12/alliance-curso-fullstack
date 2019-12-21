@@ -1,6 +1,6 @@
 <template>
   <div>
-    <b-table striped hover :items="ativos" :fields="fields"></b-table>
+    <b-table striped hover outlined responsive :items="ativos" :fields="fields"></b-table>
   </div>
 </template>
 
@@ -38,6 +38,10 @@ export default {
         {
           key: "lucro_prejuizo",
           label: "lucro_prejuizo"
+        },
+        {
+          key:"data",
+          label:"data"
         }
       ]
     };
@@ -49,6 +53,7 @@ export default {
         quantidade: Number(this.value.quantidade),
         preco: Number(this.value.preco),
         tipo: this.value.tipo,
+        data: this.value.data,
         lucro_prejuizo: this.value.lucro_prejuizo
       };
       this.$emit("input", retorno);

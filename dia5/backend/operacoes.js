@@ -9,7 +9,7 @@ router.get('/:codigo', async(req, res) => {
 
     const client = criaClient();
     await client.connect();
-    let sql= `select CODIGO_ATIVO, QUANTIDADE, PRECO, TIPO, LUCRO_PREJUIZO from OPERACOES where CODIGO_ATIVO = '${codigo}'`
+    let sql= `select CODIGO_ATIVO, QUANTIDADE, PRECO, TIPO, LUCRO_PREJUIZO, DATA from OPERACOES where CODIGO_ATIVO = '${codigo}'`
     let queryResult = await client.query(sql);
     for (let row of queryResult.rows) {
         resultado.push({
@@ -17,6 +17,7 @@ router.get('/:codigo', async(req, res) => {
             quantidade: row.quantidade,
             preco: row.preco,
             tipo:row.tipo,
+            data:row.data,
             lucro_prejuizo: row.lucro_prejuizo
         });
     }
