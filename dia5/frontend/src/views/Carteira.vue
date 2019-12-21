@@ -26,6 +26,7 @@
         </b-button>
       
       </template>
+
     </b-table>
 
     <b-modal
