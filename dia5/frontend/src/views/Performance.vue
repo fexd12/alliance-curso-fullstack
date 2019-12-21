@@ -4,6 +4,13 @@
     <hr/>
 
     <b-table striped hover :items="ativos" :fields="fields"></b-table>
+    <template slot="cell(ativo)" slot-scope=" { item: { lucro_prejuizo } }">
+        <p :class="lucro_prejuizo < 1 ? 'text-success' : 'text-danger'" />
+      </template>
+    <b-row>
+        <b-col sm="8">Total Calculado</b-col>
+        <b-col v-model="somatudo">{{ somatudo }}</b-col>
+      </b-row>
   </div>
 </template>
 <script>
@@ -26,6 +33,12 @@ export default {
         lucro_prejuizo:""
       },
       ativos: [],
+      historicos: [   
+        {
+          lucro_prejuizo: "",
+          resultado: ""
+        }
+      ],
       fields: [
         {
           key: "codigo_ativo",
@@ -56,7 +69,19 @@ export default {
       this.ativos.splice(0, this.ativos.length);
       let dados = await axios.get('http://localhost:3000/performance/');
       this.ativos.push(...dados.data);
+    },
+    somatudo(){
+      this.historicos.unshift({
+        lucro_prejuizo: this.lucro_prejuizo1
+      });
+
+      let total=0
+      for (let linha of this.historicos) {
+        total += linha.lucro_prejuizo;
+      }
+      return total;
     }
+
   },
   async mounted() {
     await this.carregaAtivos();

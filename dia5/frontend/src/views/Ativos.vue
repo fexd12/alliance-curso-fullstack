@@ -136,7 +136,7 @@ export default {
       } catch(err) {
         alert('erro ao inserir ativo');
       }
-    },
+    }
   },
   async mounted() {
     await this.carregaAtivos();

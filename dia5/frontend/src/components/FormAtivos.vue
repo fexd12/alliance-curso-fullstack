@@ -30,6 +30,7 @@
         </b-form-group>
     </b-form>
 </template>
+
 <script>
 export default {
     props: ['value'],

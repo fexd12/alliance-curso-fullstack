@@ -41,11 +41,11 @@
                 required
                 placeholder="Preco"
                 @input="handleInput"/>
-        </b-form-group>
-           
+        </b-form-group>           
     </b-form>
 </template>
 <script>
+
 export default {
     props:['value'],
     data () {
@@ -69,6 +69,7 @@ export default {
             };
             this.$emit("input",retorno);     
         }
-    }    
+    }
+
 }
 </script>
