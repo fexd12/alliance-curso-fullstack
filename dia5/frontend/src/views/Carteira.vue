@@ -24,6 +24,7 @@
         <b-button v-on:click="Beforehistorico(item)">
           <font-awesome-icon icon="pen" />
         </b-button>
+      
       </template>
     </b-table>
 
@@ -66,6 +67,7 @@
       @show="historico"
     >
       <formOperacoes v-model="ativoAtual" />
+
     </b-modal>
   </div>
 </template>
@@ -82,7 +84,11 @@ export default {
         codigo_ativo: "",
         quantidade: "",
         preco_medio: "",
-        isNew: true
+        isNew: true,
+        preco: "",
+        tipo:"",
+        lucro_prejuizo: ""
+
       },
       ativos: [],
       fields: [
@@ -141,9 +147,13 @@ export default {
         alert("erro ao atualizar ativo");
       }
     },
-    Beforehistorico(ativo) {
+      Beforehistorico(ativo) {
       this.ativoAtual = {
-        codigo_ativo: ativo.codigo_ativo
+        codigo_ativo: ativo.codigo_ativo,
+        quantidade: ativo.quantidade,
+        preco: ativo.preco,
+        tipo:ativo.preco,
+        lucro_prejuizo: ativo.lucro_prejuizo
       };
       this.$root.$emit("bv::show::modal", "historico");
     },
