@@ -29,7 +29,7 @@ export default {
         },
         {
           key: "preco",
-          label: "Preco Medio"
+          label: "Preco"
         },
         {
           key: "tipo",
@@ -56,7 +56,7 @@ export default {
     async historico() {
       this.ativos.splice(0, this.ativos.length);
       let dados = await axios.get(
-        `http://localhost:3000/${this.ativos.codigo_ativo}`
+        `http://localhost:3000/${this.value.codigo_ativo}`
       );
       this.ativos.push(...dados.data);
       //await this.carregaAtivos();
