@@ -36,7 +36,7 @@ router.post('/', async (req, res) => {
     await client.query(sql1);
     res.status(201);
     res.send();
-    await client.end()
+    await client.end();
 });
 
 router.put('/:codigo', async (req, res) => {

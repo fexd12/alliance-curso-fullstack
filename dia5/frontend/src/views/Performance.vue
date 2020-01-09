@@ -1,11 +1,14 @@
 <template>
   <div class="ativos">
     <h1>Performance</h1>
-    <hr/>
-    <b-table striped hover :items="ativos" :fields="fields"></b-table>
+    <hr />
+    <b-table striped hover :items="styleditems" :fields="fields" ></b-table>
     <b-row>
-        <b-col sm="8">Total Calculado</b-col>
-        <b-col v-model="somatudo" :class="somatudo >= 0 ? 'text-success' : 'text-danger'">{{ somatudo }} </b-col>
+      <b-col sm="8">Total Calculado</b-col>
+      <b-col
+        v-model="somatudo"
+        :class="somatudo >= 0 ? 'text-success' : 'text-danger'"
+      >{{ somatudo }}</b-col>
     </b-row>
   </div>
 </template>
@@ -27,7 +30,6 @@ export default {
         preco:"",
         quantidade:"",
         lucro_prejuizo:""
-      
       },
       ativos: [],
       fields: [
@@ -50,7 +52,7 @@ export default {
 
         },{
             key:"lucro_prejuizo",
-            label:"Lucro / Prejuizo"            
+            label:"Lucro / Prejuizo"
         }
      ]
     }  
@@ -60,7 +62,8 @@ export default {
       this.ativos.splice(0, this.ativos.length);
       let dados = await axios.get('http://localhost:3000/performance/');
       this.ativos.push(...dados.data);
-    }
+    },
+    estiloObjetivo: value => (value >=0) ? 'success': 'danger'
        
   },
   async mounted() {
@@ -74,7 +77,17 @@ export default {
           total += Number(linha.lucro_prejuizo);
       }
       return Number(total);
+    },
+    styleditems(){
+      return this.ativos.map(datum =>
+        Object.assign({},datum,{
+          _cellVariants:{
+            lucro_prejuizo:this.estiloObjetivo(datum.lucro_prejuizo)
+          }
+        })
+      )
     }
   }
+
 }
 </script>

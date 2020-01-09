@@ -11,6 +11,17 @@ function criaClient() {
     });
 }
 
+// function criaClient() {
+//     return new Client({
+//         user: 'adminfelipe',
+//         host: 'db-teste.database.windows.net',
+//         database: 'db_users',
+//         password: '#Dmin123',
+//         port: 1433
+
+//     });
+// }
+
 export {
     criaClient
 }

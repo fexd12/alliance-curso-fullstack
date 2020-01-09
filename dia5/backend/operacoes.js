@@ -7,7 +7,7 @@ router.get('/:codigo', async(req, res) => {
     let resultado = [];
     let codigo = req.params.codigo;
 
-    const client = criaClient();
+        const client = criaClient();
     await client.connect();
     let sql= `select CODIGO_ATIVO, QUANTIDADE, PRECO, TIPO, LUCRO_PREJUIZO, DATA from OPERACOES where CODIGO_ATIVO = '${codigo}'`
     let queryResult = await client.query(sql);
